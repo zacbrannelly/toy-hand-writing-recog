@@ -76,9 +76,9 @@ $\frac{dL}{da} = 2(a - label)$
 
 Now we need to cancel out the $da$ denominator, so we derive the activation function:
 
-$\frac{da}{dz} = delta\_act(z)$
+$\frac{da}{dz} = delta\\_act(z)$
 
-Where $delta\_act(x)$ is the derivative of the non-linear activation function, so if we used Sigmoid, then it would be $delta_act(x) = x * sigmoid(x) * (1 - sigmoid(x))$.
+Where $delta\\_act(x)$ is the derivative of the non-linear activation function, so if we used Sigmoid, then it would be $delta_act(x) = x * sigmoid(x) * (1 - sigmoid(x))$.
 
 Multiplying those two together and applying the chain rule, that would give us:
 
@@ -92,7 +92,7 @@ Where $i_i$ is the input value from the previous layer that maps to the current 
 
 Altogether we get the following formula:
 
-$gradient = \frac{dL}{dw_i} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{dw_i} = 2(a - label) * delta\\_act(z) * i_i$
+$gradient = \frac{dL}{dw_i} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{dw_i} = 2(a - label) * delta\\\_act(z) * i_i$
 
 Now lets give each of the components required a nice name since we're programmers not mathematicians:
 
@@ -169,7 +169,7 @@ Use the following mappings from this doc to read the above figure:
 * $k$ maps to a single neuron in the previous layer
 * $l$ maps to a layer
 * $w_{jk}$ maps to the weight value in neuron $j$ that corresponds to the activation of neuron $k$ from the previous layer.
-* $\sigma'(x)$ is $delta\_act(x)$ - the derivative function for the activation function.
+* $\sigma'(x)$ is $delta\\_act(x)$ - the derivative function for the activation function.
 * $y_j$ is the $label$ from the training data.
 
 ## Stochastic Gradient Descent (SGD)
