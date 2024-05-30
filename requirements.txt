@@ -1,0 +1,6 @@
+fire
+torch
+matplotlib
+tqdm
+datasets
+pyarrow
