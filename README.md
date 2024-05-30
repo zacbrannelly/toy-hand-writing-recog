@@ -15,3 +15,15 @@ Run the following command to train the neural network:
 ```bash
 python model_from_scratch.py
 ```
+
+Then to run inference on a test image, run the following command:
+
+```bash
+python3 inference --input-image <path-to-image>
+```
+
+Or you can use the Gradio interface to run inference:
+
+```bash
+python3 app.py
+```
