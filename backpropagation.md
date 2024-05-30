@@ -172,6 +172,36 @@ Use the following mappings from this doc to read the above figure:
 * $\sigma'(x)$ is $delta\\_act(x)$ - the derivative function for the activation function.
 * $y_j$ is the $label$ from the training data.
 
+## What about the bias?
+
+To calculate the bias all we need to do is find $\frac{dL}{db}$, which can be found using the Chain Rule again.
+
+First we get a derivative where the bias is involved:
+
+$z = w_0i_0 + w_1i_1\ ...\ w_{n-1}i_{n-1} + b$
+
+We derive this in terms of $b$:
+
+$\frac{dz}{db} = 1$
+
+Now we need to cancel out the $dz$ numerator, so we look at the previous derivatives we have calculated. We can use the $\frac{da}{dz}$ gradient.
+
+$\frac{dz}{db} * \frac{da}{dz} = \frac{da}{db}$
+
+Now we need to cancel out the $da$ numerator, so we look at the previous derivatives we have calculated. We can use the $\frac{dL}{da}$ gradient.
+
+$\frac{da}{db} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{db}$
+
+Which simplifies to:
+
+$\frac{da}{db} = \frac{dL}{da} * \frac{da}{dz}$
+
+Or in code:
+
+```python
+bias_gradient = output_gradient * activation_gradient
+```
+
 ## Stochastic Gradient Descent (SGD)
 
 But how do we update the weights once we have these gradients? We can use a technique called Stochastic Gradient Descent (SGD).
