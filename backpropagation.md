@@ -92,7 +92,7 @@ Where $i_i$ is the input value from the previous layer that maps to the current 
 
 Altogether we get the following formula:
 
-$gradient = \frac{dL}{dw_i} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{dw_i} = 2(a - label) * delta\_act(z) * i_i$
+$gradient = \frac{dL}{dw_i} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{dw_i} = 2(a - label) * delta\\_act(z) * i_i$
 
 Now lets give each of the components required a nice name since we're programmers not mathematicians:
 
