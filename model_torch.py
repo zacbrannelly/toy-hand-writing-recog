@@ -29,10 +29,10 @@ def main():
   train_images, train_labels, test_images, test_labels = utils.load_datasets()
 
   model = HandWritingModule()
-  optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
+  optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
   loss_function = torch.nn.MSELoss()
 
-  num_epochs = 100
+  num_epochs = 500
   batch_size = 32
 
   for epoch in range(num_epochs):
