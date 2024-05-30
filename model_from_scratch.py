@@ -1,7 +1,9 @@
 import random
 import math
 import matplotlib.pyplot as plt
+import fire
 import utils
+import pickle
 from tqdm import tqdm
 from typing import List
 
@@ -116,6 +118,29 @@ class Model:
   def backward(self, gradients_per_batch: List[List[float]]):
     for layer in reversed(self.layers):
       gradients_per_batch = layer.backward(gradients_per_batch)
+
+  def load(self, path: str):
+    with open(path, "rb") as f:
+      weights, bias = pickle.load(f)
+    
+    for layer in self.layers:
+      for neuron in layer.neurons:
+        popped_weight = weights.pop(0)
+        popped_bias = bias.pop(0)
+
+        neuron.weight = popped_weight
+        neuron.bias = popped_bias
+
+  def save(self, path: str):
+    weights = []
+    bias = []
+    for layer in self.layers:
+      for neuron in layer.neurons:
+        weights.append(neuron.weight)
+        bias.append(neuron.bias)
+    
+    with open(path, "wb") as f:
+      pickle.dump((weights, bias), f)
 
 
 class Layer:
@@ -250,7 +275,7 @@ class Neuron:
     return input_gradients_per_batch
 
 
-def main():
+def main(show_graphs=False):
   # Load the MNIST dataset
   train_input, train_expected, validation_input, validation_expected = utils.load_datasets_as_lists()
 
@@ -266,7 +291,7 @@ def main():
   expected_batches = [train_expected[i:i + batch_size] for i in range(0, len(train_expected), batch_size)]
   batches = list(zip(input_batches, expected_batches))
 
-  num_epochs = 100
+  num_epochs = 10
   average_loss = 0.0
 
   train_loss = []
@@ -285,7 +310,7 @@ def main():
       # Backward propagation
       model.backward(output_gradients)
     
-      if step_index % 100 == 0:
+      if step_index % 1000 == 0:
         # Calculate the average loss over the epoch
         average_loss = sum([sum(loss) / len(loss) for loss in losses]) / len(losses)
 
@@ -315,10 +340,15 @@ def main():
       step_index += 1
 
     # Show the graph at the end of the epoch
-    plt.plot(train_loss, label="Train Loss")
-    plt.plot(val_loss, label="Validation Loss")
-    plt.legend()
-    plt.show()
+    if show_graphs:
+      plt.plot(train_loss, label="Train Loss")
+      plt.plot(val_loss, label="Validation Loss")
+      plt.legend()
+      plt.show()
+  
+  # Save the model
+  model.save("model_from_scratch_10.pkl")
+
 
 if __name__ == "__main__":
-  main()
+  fire.Fire(main)

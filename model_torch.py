@@ -17,6 +17,12 @@ class HandWritingModule(torch.nn.Module):
     # ReLU activation function - max(0, x)
     self.activation = torch.nn.ReLU()
 
+  def load(self, model_file):
+    self.load_state_dict(torch.load(model_file))
+
+  def save(self, model_file):
+    torch.save(self.state_dict(), model_file)
+
   def forward(self, x):
     x = self.input_layer(x)
     x = self.activation(x)
@@ -64,6 +70,9 @@ def main():
       print(f"Accuracy: {accuracy * 100:.2f}%")
 
     print()
+
+  # Save the model
+  model.save(f"handwriting_model_torch_{num_epochs}.pt")
 
 if __name__ == "__main__":
   fire.Fire(main)
