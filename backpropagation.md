@@ -209,6 +209,7 @@ But how do we update the weights once we have these gradients? We can use a tech
 This is all SGD is:
 
 $w_i = w_i - lr * \frac{dL}{dw_i}$
+
 $b = b - lr * \frac{dL}{db}$
 
 Where $w_i$ is a weight in a layer $lr$ is Learning Rate.
