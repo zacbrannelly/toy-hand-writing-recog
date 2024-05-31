@@ -188,13 +188,13 @@ Now we need to cancel out the $dz$ numerator, so we look at the previous derivat
 
 $\frac{dz}{db} * \frac{da}{dz} = \frac{da}{db}$
 
-Now we need to cancel out the $da$ numerator, so we look at the previous derivatives we have calculated. We can use the $\frac{dL}{da}$ gradient.
+Now we need to cancel out the $da$ numerator and replace it with $dL$, so we look at the previous derivatives we have calculated. We can use the $\frac{dL}{da}$ gradient.
 
 $\frac{da}{db} = \frac{dL}{da} * \frac{da}{dz} * \frac{dz}{db}$
 
 Which simplifies to:
 
-$\frac{da}{db} = \frac{dL}{da} * \frac{da}{dz}$
+$\frac{dL}{db} = \frac{dL}{da} * \frac{da}{dz}$
 
 Or in code:
 
